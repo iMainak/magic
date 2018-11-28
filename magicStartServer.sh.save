@@ -1,0 +1,9 @@
+administratror@administratror-ThinkPad-T430:~/code/Hyperledger/Lms/yo/dist$
+
+
+
+
+cd ~
+cd fabric-dev-servers
+./teardownAllDocker.sh
+./startFabric.sh
