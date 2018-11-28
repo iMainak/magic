@@ -87,5 +87,5 @@ upgradeNetwork)
             composer-rest-server -c admin@pms -n never
       fi
       echo "Bye!! See you soon..."
-
+;;
 esac
