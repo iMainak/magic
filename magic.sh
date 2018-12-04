@@ -34,7 +34,9 @@ composerCard)
       echo "Do you want to DELETE your Admin card ?"
       read value 
       if [ $value == "yes" ];then
-            composer card delete -c admin@pms
+            echo "Enter your BNA file name"
+            read user_input
+            composer card delete -c admin@$user_input
       else
             echo "Good job !"
       fi 
@@ -61,13 +63,15 @@ createAdmin)
             echo "U did great job!!" 
       fi
       composer archive create -t dir -n ../
+      echo "Enter your BNA file name"
+      read user_input
       echo -n "Enter your package version "
       read value
-      composer network install -c PeerAdmin@hlfv1 -a pms@$value.bna && composer network start -c PeerAdmin@hlfv1 -n pms -V $value -A admin -S adminpw && composer card import -f admin@pms.card
+      composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network start -c PeerAdmin@hlfv1 -n $user_input -V $value -A admin -S adminpw && composer card import -f admin@$user_input.card
       echo "Do you want to start REST-SERVER?"
       read value
       if [ $value == "yes" ];then
-            composer-rest-server -c admin@pms -n never
+            composer-rest-server -c admin@$user_input -n never
       fi
       echo "Bye!! See you soon..."
 
@@ -78,13 +82,15 @@ upgradeNetwork)
       read value
       cd $value
       composer archive create -t dir -n ../
+      echo "Enter your BNA file name"
+      read user_input
       echo -n "Enter your package version "
       read value      
-      composer network install -c PeerAdmin@hlfv1 -a pms@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n pms -V $value
+      composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n $user_input -V $value
       echo "Do you want to start REST-SERVER?"
       read value
       if [ $value == "yes" ];then
-            composer-rest-server -c admin@pms -n never
+            composer-rest-server -c admin@$user_input -n never
       fi
       echo "Bye!! See you soon..."
 ;;
