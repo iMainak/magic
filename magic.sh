@@ -81,6 +81,13 @@ upgradeNetwork)
       echo "Enter your project location!!"
       read value
       cd $value
+      echo "are you already in dist folder?"
+      read value
+      if [ $value == "yes" ];then
+            echo "WOW!! you are so smart!!"
+      else
+            cd dist
+      fi
       composer archive create -t dir -n ../
       echo "Enter your BNA file name"
       read user_input
