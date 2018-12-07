@@ -8,7 +8,7 @@ startServer)
 tempStop)
       cd ~/fabric-dev-servers/
       ./fabricUtil.sh stop
-      echo "Do you want to start again? "
+      echo "Do you want to start again?(only yes/no)"
       read value 
       if [ $value == "yes" ];then
       ./fabricUtil.sh start
@@ -17,21 +17,21 @@ tempStop)
       fi
 ;;
 composerCard)
-      echo "Do you want to see your card list?"
+      echo "Do you want to see your card list?(only yes/no)"
       read value
       if [ $value == "yes" ];then
             composer card list
       else
-            echo "Salute your is memory so strong!!"
+            echo "Salute!! your is memory so strong!!"
       fi
-      echo "Do you want DELETE your PeerAdmin Card?"
+      echo "Do you want DELETE your PeerAdmin Card?(only yes/no)"
       read value 
       if [ $value == "yes" ];then
             composer card delete -c PeerAdmin@hlfv1 
       else
             " Ok!! "
       fi
-      echo "Do you want to DELETE your Admin card ?"
+      echo "Do you want to DELETE your Admin card ?(only yes/no)"
       read value 
       if [ $value == "yes" ];then
             echo "Enter your BNA file name"
@@ -53,7 +53,7 @@ createAdmin)
       echo "Enter your project location!!"
       read value
       cd $value
-      echo "Do you want to create directory called dist ?"
+      echo "Do you want to create directory called dist?(only yes/no)"
       read value
       if [ $value == "yes" ];then
             mkdir dist
@@ -68,7 +68,7 @@ createAdmin)
       echo -n "Enter your package version "
       read value
       composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network start -c PeerAdmin@hlfv1 -n $user_input -V $value -A admin -S adminpw && composer card import -f admin@$user_input.card
-      echo "Do you want to start REST-SERVER?"
+      echo "Do you want to start REST-SERVER?(only yes/no)"
       read value
       if [ $value == "yes" ];then
             composer-rest-server -c admin@$user_input -n never
@@ -81,7 +81,7 @@ upgradeNetwork)
       echo "Enter your project location!!"
       read value
       cd $value
-      echo "are you already in dist folder?"
+      echo "are you already in dist folder?(only yes/no)"
       read value
       if [ $value == "yes" ];then
             echo "WOW!! you are so smart!!"
@@ -94,7 +94,7 @@ upgradeNetwork)
       echo -n "Enter your package version "
       read value      
       composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n $user_input -V $value
-      echo "Do you want to start REST-SERVER?"
+      echo "Do you want to start REST-SERVER?(only yes/no)"
       read value
       if [ $value == "yes" ];then
             composer-rest-server -c admin@$user_input -n never
