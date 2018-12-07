@@ -29,7 +29,7 @@ composerCard)
       if [ $value == "yes" ];then
             composer card delete -c PeerAdmin@hlfv1 
       else
-            " Ok!! "
+            " Ok!!"
       fi
       echo "Do you want to DELETE your Admin card ?"
       read value 
