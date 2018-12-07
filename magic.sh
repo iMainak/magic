@@ -11,7 +11,7 @@ tempStop)
       echo "Do you want to start again?(only yes/no)"
       read value 
       if [ $value == "yes" ];then
-      ./fabricUtil.sh start
+         ./startFabric.sh
       else
             echo "Bye!! See you soon..."
       fi
