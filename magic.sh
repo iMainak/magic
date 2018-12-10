@@ -8,10 +8,16 @@ startServer)
 tempStop)
       cd ~/fabric-dev-servers/
       ./fabricUtil.sh stop
-      echo "Do you want to start again?(only yes/no)"
-      read value 
-      if [ $value == "yes" ];then
-      ./fabricUtil.sh start
+      if [ $? -eq 0 ]; then      
+       echo "ok"
+       echo "Do you want to start again?(only yes/no)"
+       read value 
+       if [ $value == "yes" ];then
+        ./startFabric.sh
+       else
+        echo "I couldn't make it!! Sorry"
+       fi
+
       else
             echo "Bye!! See you soon..."
       fi
@@ -22,14 +28,14 @@ composerCard)
       if [ $value == "yes" ];then
             composer card list
       else
-            echo "Salute!! your is memory so strong!!"
+            echo "Salute!! your memory is so strong!!"
       fi
       echo "Do you want DELETE your PeerAdmin Card?(only yes/no)"
       read value 
       if [ $value == "yes" ];then
             composer card delete -c PeerAdmin@hlfv1 
       else
-            " Ok!!"
+            echo "Ok!!"
       fi
       echo "Do you want to DELETE your Admin card ?(only yes/no)"
       read value 
@@ -53,26 +59,46 @@ createAdmin)
       echo "Enter your project location!!"
       read value
       cd $value
-      echo "Do you want to create directory called dist?(only yes/no)"
-      read value
-      if [ $value == "yes" ];then
-            mkdir dist
-            cd dist
+      
+      if [ $? -eq 0 ]; then      
+       echo "Ok"
+       echo "Do you want to create directory called dist?(only yes/no)"
+       read value
+       if [ $value == "yes" ];then
+             mkdir dist
+             cd dist
+       else
+             cd dist
+             echo "U did great job!!" 
+       fi
+       composer archive create -t dir -n ../
+        if [ $? -eq 0 ]; then      
+          echo "Ok"          
+          echo "Enter your BNA file name"
+          read user_input
+          echo -n "Enter your package version "
+          read value
+          composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network start -c PeerAdmin@hlfv1 -n $user_input -V $value -A admin -S adminpw && composer card import -f admin@$user_input.card
+          if [ $? -eq 0 ]; then      
+            echo "Ok" 
+            echo "Do you want to start REST-SERVER?(only yes/no)"
+            read value
+            if [ $value == "yes" ];then
+                  composer-rest-server -c admin@$user_input -n never
+            else
+               echo "Fail Upgrade Network!!"
+            fi
+          else 
+            echo "Fail Upgrade Network!!"
+          fi
+        else
+            echo "Fail to create BNA file!!"
+        fi
+
       else
-            cd dist
-            echo "U did great job!!" 
+        echo "I couldn't make it!! Sorry"
       fi
-      composer archive create -t dir -n ../
-      echo "Enter your BNA file name"
-      read user_input
-      echo -n "Enter your package version "
-      read value
-      composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network start -c PeerAdmin@hlfv1 -n $user_input -V $value -A admin -S adminpw && composer card import -f admin@$user_input.card
-      echo "Do you want to start REST-SERVER?(only yes/no)"
-      read value
-      if [ $value == "yes" ];then
-            composer-rest-server -c admin@$user_input -n never
-      fi
+      
       echo "Bye!! See you soon..."
 
 ;;
@@ -88,16 +114,29 @@ upgradeNetwork)
       else
             cd dist
       fi
+     
       composer archive create -t dir -n ../
-      echo "Enter your BNA file name"
-      read user_input
-      echo -n "Enter your package version "
-      read value      
-      composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n $user_input -V $value
-      echo "Do you want to start REST-SERVER?(only yes/no)"
-      read value
-      if [ $value == "yes" ];then
-            composer-rest-server -c admin@$user_input -n never
+      if [ $? -eq 0 ]; then      
+          echo "Enter your BNA file name"
+          read user_input
+          echo -n "Enter your package version "
+          read value
+          composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n $user_input -V $value
+          if [ $? -eq 0 ]; then      
+            echo "Ok"
+            echo "Do you want to start REST-SERVER?(only yes/no)"
+            read value
+            if [ $value == "yes" ];then
+                  echo "Ok"                  
+                  composer-rest-server -c admin@$user_input -n never
+            else 
+                  echo "Really Don't Want!!"
+            fi
+          else
+            echo "Fail Upgrade Network!!"
+          fi
+      else
+            echo "Fail to create BNA file!!"
       fi
       echo "Bye!! See you soon..."
 ;;
