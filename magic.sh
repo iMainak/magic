@@ -66,7 +66,6 @@ createAdmin)
       echo "Enter your project location!!"
       read value
       cd $value
-      
       if [ $? -eq 0 ]; then      
        echo "Ok"
        echo "Do you want to create directory called dist?(only yes/no)"
