@@ -8,6 +8,7 @@ startServer)
 tempStop)
       cd ~/fabric-dev-servers/
       ./fabricUtil.sh stop
+<<<<<<< HEAD
       if [ $? -eq 0 ]; then      
        echo "ok"
        echo "Do you want to start again?(only yes/no)"
@@ -18,6 +19,12 @@ tempStop)
         echo "I couldn't make it!! Sorry"
        fi
 
+=======
+      echo "Do you want to start again?(only yes/no)"
+      read value 
+      if [ $value == "yes" ];then
+         ./startFabric.sh
+>>>>>>> 9b5ccdc8d5ce39dc0b081983000edd41805983da
       else
             echo "Bye!! See you soon..."
       fi
