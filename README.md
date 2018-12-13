@@ -2,7 +2,7 @@
 Makes it easier those are using Hyperledger Composer. Using this you can able to run some basic command for creating a Business network Application 
 # Before going to use it !!
 ##### NOTE
-If you already install your environment then skip these step       
+If you already install your environment then skip these steps       
 #### 1 . Installation of development environment 
 ##### Step-1
 Make a Directory in ``home/host_name/`` 
