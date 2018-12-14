@@ -14,8 +14,18 @@ mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
 curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
 tar -xvf fabric-dev-servers.tar.gz
 ```
-##### AND 
-#### 2. For non-destructive restarts of dev environment
+___
+##### Step-3
+### Download and start the docker images
+```sh
+./downloadFabric.sh 
+./startFabric.sh 
+```
+***Note***:
+**For error:** Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.38/images/json: dial unix /var/run/docker.sock: connect: permission denied
+**Do:** ``sudo chmod 666 /var/run/docker.sock``
+##### Step-4
+#### For non-destructive restarts of dev environment
 ```sh
 curl -O https://github.com/acloudfan/HLF-Windows-Fabric-Tool/blob/master/fabricUtil.sh
 chmod 755 fabricUtil.sh
@@ -24,6 +34,64 @@ chmod 755 fabricUtil.sh
 ```sh
 ./startFabric.sh
 ```
+**After that:**
+```sh
+./fabricUtil.sh stop
+./fabricUtil.sh start
+```
+___
+#### To get docker images:
+```sh
+docker images
+```
+```
+REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+hyperledger/fabric-ca        1.2.0               66cc132bd09c        2 months ago        252MB
+hyperledger/fabric-ccenv     1.2.0               6acf31e2d9a4        2 months ago        1.43GB
+hyperledger/fabric-orderer   1.2.0               4baf7789a8ec        2 months ago        152MB
+hyperledger/fabric-peer      1.2.0               82c262e65984        2 months ago        159MB
+hyperledger/fabric-couchdb   0.4.10              3092eca241fc        2 months ago        1.61GB
+```
+#### And, the running containers:
+```sh
+docker ps
+```
+```
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+3010cb6c712b        hyperledger/fabric-peer:1.2.0       "peer node start"        2 minutes ago       Up 2 minutes        0.0.0.0:7051->7051/tcp, 0.0.0.0:7053->7053/tcp   peer0.org1.example.com
+72afa9a59096        hyperledger/fabric-couchdb:0.4.10   "tini -- /docker-ent…"   2 minutes ago       Up 2 minutes        4369/tcp, 9100/tcp, 0.0.0.0:5984->5984/tcp       couchdb
+a253164631d4        hyperledger/fabric-ca:1.2.0         "sh -c 'fabric-ca-se…"   2 minutes ago       Up 2 minutes        0.0.0.0:7054->7054/tcp                           ca.org1.example.com
+9a14513db2a1        hyperledger/fabric-orderer:1.2.0    "orderer"                2 minutes ago       Up 2 minutes        0.0.0.0:7050->7050/tcp                           orderer.example.com
+```
+___
+### Installation of Yeoman
+```sh
+npm install -g yo
+```
+___
+### Installation of  hyperledger-composer yo generator
+```sh
+npm install -g generator-hyperledger-composer
+```
+___
+### Check installed generators
+```sh
+yo --generators
+```
+___
+### Creating a BNA
+- Generate BNA scaffolding using the Yo generator. 
+```sh
+yo hyperledger-composer
+```
+___
+### To change the HLF version
+```sh
+export FABRIC_VERSION=hlfv1
+export FABRIC_VERSION=hlfv11
+export FABRIC_VERSION=hlfv12
+```
+___
 # How to use !!
 ##### Step-1
 First you go to the Download page( Where you download this file ) and give .sh file permission by using 
