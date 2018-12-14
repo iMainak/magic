@@ -9,13 +9,12 @@ tempStop)
       cd ~/fabric-dev-servers/
       ./fabricUtil.sh stop
       if [ $? -eq 0 ]; then      
-       echo "ok"
        echo "Do you want to start again?(only yes/no)"
        read value 
        if [ $value == "yes" ];then
         ./startFabric.sh
        else
-        echo "I couldn't make it!! Sorry"
+        echo "Really u don't want to start your fabric"
        fi
 
       else
@@ -61,7 +60,6 @@ createAdmin)
       cd $value
       
       if [ $? -eq 0 ]; then      
-       echo "Ok"
        echo "Do you want to create directory called dist?(only yes/no)"
        read value
        if [ $value == "yes" ];then
@@ -73,18 +71,15 @@ createAdmin)
        fi
        composer archive create -t dir -n ../
         if [ $? -eq 0 ]; then      
-          echo "Ok"          
           echo "Enter your BNA file name"
           read user_input
           echo -n "Enter your package version "
           read value
           composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network start -c PeerAdmin@hlfv1 -n $user_input -V $value -A admin -S adminpw && composer card import -f admin@$user_input.card
           if [ $? -eq 0 ]; then      
-            echo "Ok" 
             echo "Do you want to start REST-SERVER?(only yes/no)"
             read value
             if [ $value == "yes" ];then
-                  echo "Ok" 
                   composer-rest-server -c admin@$user_input -n never
             else
                   echo "Really Don't Want!!"               
@@ -124,11 +119,9 @@ upgradeNetwork)
           read value
           composer network install -c PeerAdmin@hlfv1 -a $user_input@$value.bna && composer network upgrade -c PeerAdmin@hlfv1 -n $user_input -V $value
           if [ $? -eq 0 ]; then      
-            echo "Ok"
             echo "Do you want to start REST-SERVER?(only yes/no)"
             read value
             if [ $value == "yes" ];then
-                  echo "Ok"                  
                   composer-rest-server -c admin@$user_input -n never
             else 
                   echo "Really Don't Want!!"
