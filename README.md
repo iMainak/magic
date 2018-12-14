@@ -61,7 +61,7 @@ CONTAINER ID        IMAGE                               COMMAND                 
 3010cb6c712b        hyperledger/fabric-peer:1.2.0       "peer node start"        2 minutes ago       Up 2 minutes        0.0.0.0:7051->7051/tcp, 0.0.0.0:7053->7053/tcp   peer0.org1.example.com
 72afa9a59096        hyperledger/fabric-couchdb:0.4.10   "tini -- /docker-ent…"   2 minutes ago       Up 2 minutes        4369/tcp, 9100/tcp, 0.0.0.0:5984->5984/tcp       couchdb
 a253164631d4        hyperledger/fabric-ca:1.2.0         "sh -c 'fabric-ca-se…"   2 minutes ago       Up 2 minutes        0.0.0.0:7054->7054/tcp                           ca.org1.example.com
-9a14513db2a1        hyperledger/fabric-orderer:1.2.0    "orderer"                2 minutes ago       Up 2 minutes        0.0.0.0:7050->7050/tcp                           orderer.example.com
+9a14513db2a1        hyperledger/fabric-orderer:1.2.0    "orderer"                2 minutes ago       Up 2 minutes        0.0.0.0:7050->7050/tcp                          orderer.example.com
 ```
 ___
 ### Installation of Yeoman
