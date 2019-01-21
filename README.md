@@ -1,22 +1,17 @@
 # Introduction
 Makes it easier those are using Hyperledger Composer. Using this you can able to run some basic command for creating a Business network Application 
 # Before going to use it !!
-##### NOTE
-If you already install your environment then skip these steps       
-#### 1 . Installation of development environment 
-##### Step-1
-Make a Directory in ``home/host_name/`` 
-``
+***NOTE: If you already install your environment then skip these steps***       
+**1 . Installation of development environment**
+#### Step-1
+```sh
 mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
-``
-##### Step-2
-```
 curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
 tar -xvf fabric-dev-servers.tar.gz
 ```
 ___
-##### Step-3
-### Download and start the docker images
+#### Step-2
+**Download and start the docker images**
 ```sh
 ./downloadFabric.sh 
 ./startFabric.sh 
@@ -24,8 +19,8 @@ ___
 ***Note***:
 **For error:** Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.38/images/json: dial unix /var/run/docker.sock: connect: permission denied
 **Do:** ``sudo chmod 666 /var/run/docker.sock``
-##### Step-4
-#### For non-destructive restarts of dev environment
+#### Step-4
+**For non-destructive restarts of dev environment**
 ```sh
 curl -O https://github.com/acloudfan/HLF-Windows-Fabric-Tool/blob/master/fabricUtil.sh
 chmod 755 fabricUtil.sh
@@ -40,7 +35,7 @@ chmod 755 fabricUtil.sh
 ./fabricUtil.sh start
 ```
 ___
-#### To get docker images:
+***To get docker images:***
 ```sh
 docker images
 ```
@@ -93,14 +88,13 @@ export FABRIC_VERSION=hlfv12
 ```
 ___
 # How to use !!
-##### Step-1
+**Step-1**
 First you go to the Download page( Where you download this file ) and give .sh file permission by using 
 ```
 chmod 777 magic.sh
 ```
-##### Step-2
-#### Note 
-**If you are interested to make a shell script global then do otherwise you can skip these step and ``move magic.sh file to your project location ``** 
+**Step-2**
+***Note If you are interested to make a shell script global then do otherwise you can skip these step and ``move magic.sh file to your project location ``***
 
 ok, so 
 First you go to the Download page( Where you download this file ) and
@@ -112,9 +106,8 @@ OK !! now you can use it anywhere by using
 ```
 bash magic.sh 
 ```
-##### Step-3
-**Before going to step-3, those are skip the Installation of development environment setup, only one thing you do that your fabric-dev-server folder move to ``home/host_name/`` or if you have better understand the shell script then before using it you can edit your folder location into the magic.sh**
- 
+**Step-3**
+**Before going to step-3, those are skip the Installation of development environment setup, only one thing you do that your fabric-dev-server folder move to ``home/host_name/`` or if you have better understand the shell script then before using it you can edit your folder location into the magic.sh** 
 Ok in step-3, first you understand what is in the .sh file
 * you can easily start your server first open your terminal and type ``` bash magic.sh startServer ``` ( magic.sh automatically go to fabric-dev-server folder and start the fabric ) 
 * for deleting your composer-card ``bash magic.sh composerCard``  
@@ -124,4 +117,4 @@ Ok in step-3, first you understand what is in the .sh file
 * for upgrade your network ``bash magic.sh upgradeNetwork`` ( Don't forgot to update your package.json file )
 * for temporary stop your network ``bash magic.sh tempStop`` 
 
-### Thank u!!
+**Thank u!!**
